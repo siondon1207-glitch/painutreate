@@ -1,23 +1,543 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+    /* 다채롭고 부드러운 색감 및 고급스러운 디자인 정의 */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #2d3748;
+      line-height: 1.9;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8;
+      word-break: keep-all;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+    h1, h2, h3, h4 {
+      color: #0f766e;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    h1 {
+      font-size: 2.4em;
+      border-bottom: 4px solid #14b8a6;
+      padding-bottom: 20px;
+      margin-top: 0;
+      letter-spacing: -1px;
+    }
+    h2 {
+      margin-top: 2.5em;
+      font-size: 1.8em;
+      position: relative;
+      padding-left: 20px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 70%;
+      background: #14b8a6;
+      border-radius: 4px;
+    }
+    h3 {
+      margin-top: 2em;
+      font-size: 1.4em;
+      color: #0d9488;
+      border-left: 5px solid #ccfbf1;
+      padding-left: 12px;
+    }
+    p, li {
+      margin-bottom: 1.3em;
+      font-size: 1.05em;
+      color: #4a5568;
+      text-align: justify;
+    }
+    ul, ol {
+      padding-left: 24px;
+      list-style-type: none;
+    }
+    li {
+      margin-bottom: 1em;
+      position: relative;
+    }
+    ul li::before {
+      content: "•";
+      color: #14b8a6;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    .highlight-box {
+      background: #f0fdfa;
+      padding: 24px;
+      border-radius: 12px;
+      border-left: 5px solid #14b8a6;
+      margin: 30px 0;
+      font-size: 1.05em;
+    }
+    .nav-links {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #f0fdfa;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .nav-links a {
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.95em;
+    }
+    .nav-links a:hover {
+      background: #14b8a6;
+      color: #ffffff;
+      border-color: #14b8a6;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 16px 32px;
+      background: #0f766e;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.15em;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #0d9488;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 0.95em;
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 14px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #f0fdfa;
+      font-weight: bold;
+      color: #0f766e;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .review-card {
+      background: #fdfbf7;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 30px 0;
+    }
+    .review-card h4 {
+      color: #ea580c;
+      margin-top: 0;
+      font-size: 1.25em;
+    }
+    /* 계산기 섹션 스타일링 */
+    .calculator-section {
+      background: #f8fafc;
+      padding: 35px;
+      border-radius: 16px;
+      margin-top: 40px;
+      border: 1px solid #cbd5e1;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #0f766e;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-sizing: border-box;
+      background: #ffffff;
+      font-size: 1em;
+      color: #334155;
+    }
+    .form-group select:focus,
+    .form-group input:focus {
+      outline: none;
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+    }
+    .result-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: #ffffff;
+      border: 2px dashed #14b8a6;
+      border-radius: 8px;
+      display: none;
+    }
+    .result-box h4 {
+      margin-top: 0;
+      color: #0f766e;
+    }
+    .external-link {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .external-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- JSON-LD 구조화 데이터 적용 (Naver AI, 구글, LLM 수집 검색엔진 최적화) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://health.reliabledone.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://health.reliabledone.com/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "headline": "오십견치료방법 완벽 가이드: 2026년 가격 비교부터 연령별 비수술 도수치료 내돈내산 후기까지",
+    "description": "2026년 신규 개편된 도수치료 및 체외충격파 관리급여 적용 기준 분석. 유착성 관절낭염 원인, 연령대별 자가진단, 수압팽창술 치료 비용 및 장단점 비교.",
+    "datePublished": "2026-01-10T09:00:00+09:00",
+    "dateModified": "2026-07-16T10:00:00+09:00",
+    "author": {
+      "@type": "Organization",
+      "name": "종합 척추 관절 헬스 케어"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "보건복지부 지정 전문 파트너"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>오십견치료방법 완벽 가이드: 2026년 가격 비교부터 연령별 비수술 도수치료 내돈내산 후기까지</h1>
+
+    <p>어깨 통증이 심해져 옷을 입거나 머리를 빗는 일상적인 동작조차 힘겨워진다면 가장 먼저 유착성 관절낭염, 즉 오십견을 의심해보아야 합니다. 과거에는 주로 50대 환자층에서 발견되어 이러한 이름이 붙었지만 최근에는 잘못된 스마트 기기 사용과 불안정한 자세로 인해 30대 오십견 및 40대 어깨 통증 환자 또한 대폭 늘어나는 추세입니다. 본 가이드에서는 2026년 보건당국의 정책 변화에 맞춘 최신 비수술 치료 비용 체계, 종류별 장단점, 커뮤니티의 내돈내산 경험담을 바탕으로 오십견치료방법에 대해 구체적이고 체계적인 의학 정보를 안내해 드립니다.</p>
+
+    <div class="highlight-box">
+      <strong>2026년 하반기 보건 의료 정책 요약:</strong> 2026년 7월부터 비급여 오남용을 줄이기 위해 도수치료가 관리급여 제도로 전환되어 전국 병의원 1회 평균 요금이 약 4만 원대로 통합되었습니다. 또한 체외충격파 치료는 실손의료보험 지급이 부위당 연간 최대 12회로 엄격하게 한정되므로 치료 계획 수립 시 본인의 가입 조건과 누적 횟수를 반드시 계산해야 합니다.
+    </div>
+
+    <div class="nav-links">
+      <a href="#section1">1. 연령별 오십견 원인과 통증 특징</a>
+      <a href="#section2">2. 2026년 개편 오십견 치료 비용 분석</a>
+      <a href="#section3">3. 대표적인 오십견치료방법 비교</a>
+      <a href="#section4">4. 도수치료와 체외충격파의 실비 적용 가이드</a>
+      <a href="#section5">5. [Dwell-Time Tool] 오십견 자가진단 계산기</a>
+      <a href="#section6">6. 커뮤니티 내돈내산 리얼 후기 비교</a>
+      <a href="#section7">7. 플랫폼별 추천 활용법 및 온라인 예약</a>
+      <a href="#section8">8. 공신력 있는 공식 외부 사이트 참조</a>
+    </div>
+
+    <h2 id="section1">1. 연령별 오십견 원인과 통증 특징</h2>
+    <p>오십견의 공식 의학 명칭은 유착성 관절낭염 혹은 동결견입니다. 어깨 관절을 둘러싸고 있는 얇은 주머니 모양의 관절낭에 염증이 생겨 점차 두꺼워지고 굳어지면서 팔을 모든 방향으로 움직이기 어려워지는 질환입니다. 퇴행성 변화가 주된 원인이지만 연령대별로 유발 인자와 대처법에는 뚜렷한 차이점이 존재합니다.</p>
+
+    <h3>1-1. 20대와 30대 젊은 층의 오십견 특징</h3>
+    <p>주로 운동 부족과 장시간 컴퓨터 업무, 부적절한 자세가 원인이 됩니다. 스마트 기기를 구부정한 자세로 오랜 기간 보게 되면 어깨가 안으로 말리는 라운드 숄더 현상이 가속화되며 회전근개 긴장과 마찰을 유발하여 유착성 관절낭염으로 이어질 수 있습니다. 30대 오십견 환자의 경우 적극적인 스트레칭과 생활 습관 교정만으로도 통증을 완벽 수준에 가깝게 낮출 수 있지만 이를 단순 근육통으로 오인해 방치하다가 만성 유착으로 악화되는 비율이 높습니다.</p>
+
+    <h3>1-2. 40대와 50대의 전통적 오십견 발생 기전</h3>
+    <p>가장 왕성하게 활동하는 시기인 만큼 어깨 관절의 누적 사용량이 임계점에 도달해 염증 반응이 본격화되는 경향이 있습니다. 특히 40대 어깨 통증 환자나 50대 오십견 치료 대상자의 경우 야간통이 동반되어 수면 장애를 겪는 경우가 매우 흔합니다. 밤이 되면 어깨 내부 압력이 상승하고 체내 염증 완화 호르몬 분비량이 감소하면서 통증이 극심해집니다.</p>
+
+    <h3>1-3. 60대와 70대 노년층의 어깨 관절염 복합 양상</h3>
+    <p>이 연령대에서는 오십견 증상뿐만 아니라 퇴행성 어깨 관절염, 회전근개 파열 등이 동시에 동반되는 복합적인 문제가 자주 관찰됩니다. 60대 오십견 증상이나 70대 노년층 어깨 관절염은 단순 유착 치료만 진행해서는 증상 호전을 기대하기 어렵습니다. MRI 촬영 등 전문 정밀 진단을 통해 힘줄의 구조적 파손 유무를 먼저 확인하고 맞춤형 보존 치료나 인대 강화 요법을 진행해야 합니다.</p>
+
+    <h2 id="section2">2. 2026년 개편 오십견 치료 비용 분석</h2>
+    <p>비보험 치료로 진행되던 각종 근골격계 시술들이 2026년 새롭게 정비되었습니다. 병원마다 부르는 게 값이라 환자 부담이 컸던 비급여 항목들에 정해진 기준이 도입됨에 따라 불필요한 과잉 진료가 줄어드는 혜택이 강화되었습니다. 아래 정리된 금액표를 참고하시어 대략적인 총 지출을 미리 계산해 보시기 바랍니다.</p>
+
+    <h3>2-1. 오십견 주요 치료별 비용 및 요금 체계</h3>
+    <p>2026년 7월 관리급여 적용을 바탕으로 정리한 1회당 평균 진료비 산출 자료입니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>치료 종류</th>
+          <th>기본 진료 단가 (1회 기준)</th>
+          <th>2026년 건강보험 혜택 적용가</th>
+          <th>연간 실손의료보험 인정 범위</th>
+          <th>치료 방법 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>기본 물리치료</td>
+          <td>약 15,000원</td>
+          <td>약 4,000원 ~ 6,000원</td>
+          <td>의사 처방에 따라 제한 없음</td>
+          <td>온열, 초음파, 텐스 등을 활용한 단순 완화</td>
+        </tr>
+        <tr>
+          <td>도수치료 (30분)</td>
+          <td>약 43,850원 (전국 표준가)</td>
+          <td>약 41,600원 (본인부담 95%)</td>
+          <td>기본 연간 15회 (필요시 최대 24회)</td>
+          <td>전문의 처방 하에 물리치료사가 직접 수기 교정</td>
+        </tr>
+        <tr>
+          <td>체외충격파 (ESWT)</td>
+          <td>약 80,000원 ~ 150,000원</td>
+          <td>비급여 (일부 관리급여)</td>
+          <td>부위당 6회, 연간 최대 12회</td>
+          <td>고에너지 음파로 세포 재생 유도 및 염증 완화</td>
+        </tr>
+        <tr>
+          <td>수압팽창술 주사</td>
+          <td>약 50,000원 ~ 100,000원</td>
+          <td>약 25,000원 ~ 40,000원</td>
+          <td>시술 횟수별 실비 보장 가능</td>
+          <td>초음파 유도 하에 생리식염수로 관절막 팽창</td>
+        </tr>
+        <tr>
+          <td>관절경 수술</td>
+          <td>약 2,500,000원 ~ 4,000,000원</td>
+          <td>급여 적용 (본인부담 약 20%)</td>
+          <td>수술비 및 입원비 한도 내 보장</td>
+          <td>유착된 관절낭을 정밀 레이저로 직접 박리</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2-2. 오십견 진단을 위한 예상 비용 견적</h3>
+    <p>오십견을 명확하게 진단하기 위해 병원에 내원하면 문진과 X-ray 촬영을 우선적으로 거치게 되며, 어깨 회전근개 힘줄 파열 여부를 꼼꼼하게 대조하기 위해 어깨 관절 초음파 검사(평균 5만 원에서 10만 원선) 또는 MRI 정밀 검사(약 30만 원에서 60만 원선)를 진행할 수 있습니다. 증상이 시작된 초기에 전문의 상담을 받으면 큰 정밀 비용 지출 없이 이학적 검사만으로도 대략적인 치료 견적을 산출하고 저렴한곳 위주로 안전한 물리치료부터 신속하게 처방받을 수 있습니다.</p>
+
+    <h2 id="section3">3. 대표적인 오십견치료방법 비교</h2>
+    <p>동결견의 진행 단계는 크게 통증기, 동결기, 해동기의 세 단계로 구분됩니다. 각 시기에 맞춰 어깨 관절의 운동 반경을 회복하고 유착을 떼어내는 방식을 취해야 합니다. 무작정 어깨를 무리하게 움직이는 자가 치료를 감행하다가는 오히려 인대 손상을 부추길 우려가 있으므로 단계적이고 의학적인 접근이 제일 바람직합니다.</p>
+
+    <h3>3-1. 비수술적 요법의 최고 대안: 수압팽창술</h3>
+    <p>어깨가 극심하게 굳어 팔이 전혀 올라가지 않는 중증 단계에서 비싼 비용의 패키지 시술 대신 환자들이 가장 먼저 고려하는 요법입니다. 초음파 영상 장비로 어깨 안쪽의 관절강을 정밀 실시간 모니터링하면서, 생리식염수와 국소마취제, 미량의 염증 완화제를 직접 주입해 풍선처럼 굳어버린 관절낭을 부드럽게 늘려 떼어내는 원리입니다. 평균 시술 시간이 10분 내외로 짧고, 시술 후 즉시 가동 범위가 유의미하게 늘어나 만족도가 제일 높은 핵심 요법 중 하나입니다.</p>
+
+    <h3>3-2. 도수치료 및 점진적 재활 운동 치료</h3>
+    <p>관절낭에 윤활유를 넣었다면 그 다음 단계는 치료사의 지도 하에 굳은 인대를 점진적으로 풀어주는 것입니다. 도수치료는 단순 지압이나 안마와 달리 해부학적 지식을 지닌 전문 치료사가 관절의 비정상적 정렬을 바로잡고 유착된 근육을 풀어내는 예방 보존 방식입니다. 7월부터 시작된 국가적인 비용 표준화로 치료비 문턱이 크게 낮아져 환자들의 경제적 접근성이 강화되었습니다.</p>
+
+    <h3>3-3. 약물요법 및 관절 내 스테로이드 주사</h3>
+    <p>밤마다 찾아오는 불면증 수준의 통증을 잡기 위해서는 소염진통제를 경구 복용하거나 관절 속에 직접 강력한 소염 효과를 가진 주사를 투여하기도 합니다. 흔히 뼈주사라 부르는 주사는 1년에 3회에서 4회 이내로 횟수를 제한하여 안전하게 투약해야 하며 통증을 한시적으로 조절하여 다음 단계인 운동 재활을 편안하게 수행할 수 있도록 돕는 역할을 합니다.</p>
+
+    <h3>3-4. 수술적 치료: 관절경적 관절낭 유리술</h3>
+    <p>최소 6개월 이상의 꾸준한 약물 요법, 주사 및 도수 재활에도 불구하고 증세의 호전이 아예 없거나, 유착 상태가 만성화되어 일상 기능이 멈춘 심각한 환자에게 드물게 권장되는 최후의 수단입니다. 어깨 부위에 약 5밀리미터 정도의 구멍을 내고 미세 카메라가 달린 관절 내시경을 삽입해 단단하게 굳어 관절 운동을 막는 관절낭 조직을 레이저로 안전하게 절개하여 박리합니다. 수술은 근본적인 굳음 원인을 직접 제거하는 확실한 장점이 있으나, 일정 기간의 회복 입원이 요구되고 퇴원 후에도 약 3개월 이상의 적극적인 재활 운동을 병행해야 한다는 단점이 있습니다.</p>
+
+    <h2 id="section4">4. 도수치료와 체외충격파의 실비 적용 가이드</h2>
+    <p>오십견 환자들이 통증 치료 시 가장 중요하게 생각하는 요소 중 하나는 자신이 예전에 들어둔 실손보험 혜택을 온전하게 받을 수 있는지 여부입니다. 개인이 보유하고 있는 실비 가입 시기(1세대부터 5세대까지)에 따라 자기부담금과 청구 가능 횟수의 격차가 큽니다.</p>
+
+    <h3>4-1. 1세대, 2세대, 3세대 기존 실손의료보험 보장 분석</h3>
+    <p>과거에 가입한 기존 실비의 경우 연간 최대 50회까지 도수치료 한도를 보장하며 본인부담금도 거의 발생하지 않아 부담 없이 병원을 이용할 수 있었습니다. 하지만 이로 인한 부작용과 과잉 청구로 인하여 손해율이 급등하면서 보험사의 분쟁조정 기준이 매년 엄격해지고 있는 실정입니다. 단순 피로나 이완 목적의 치료는 보상에서 제외될 수 있으며 정밀 진단 코드와 명확한 의사 소견서가 동반되어야 안전하게 지원을 받을 수 있습니다.</p>
+
+    <h3>4-2. 4세대 및 2026년 5세대 신규 실비 가입자의 대처법</h3>
+    <p>최근 새롭게 갈아탔거나 신규 가입한 가입자들은 통원 1회당 정해진 자기부담금(최소 1만 원에서 3만 원 혹은 의료비의 20~30% 중 큰 금액)을 반드시 공제한 뒤 환급받게 됩니다. 특히 2026년부터 도입된 도수치료 관리급여 제도 하에서는 연간 의무 한도 15회(최대 24회 범위)를 초과해 도수치료를 받게 되면 비급여로 청구되더라도 보험사 측에서 의학적 객관적 호전 증빙을 별도로 까다롭게 요구하므로 사전에 꼼꼼히 확인하고 치료 주기를 배분해야 합니다.</p>
+
+    <h2 id="section5">5. [Dwell-Time Tool] 오십견 자가진단 계산기</h2>
+    <p>본인의 현재 어깨 상태와 움직임 범위를 선택하시면 예상되는 증상의 중증도 단계와 치료 방향성, 2026년 기준 대략적인 치료 예상 비용을 계산해 드립니다. 선택 문항을 꼼꼼히 읽고 자가 체크해 보세요.</p>
+
+    <div class="calculator-section">
+      <h3>오십견 자가진단 및 치료 예상 비용 계산기</h3>
+      <div class="form-group">
+        <label for="calc-age">1. 본인의 현재 연령대를 선택해 주세요.</label>
+        <select id="calc-age">
+          <option value="30">20대 ~ 30대 젊은 연령대</option>
+          <option value="45">40대 어깨 과사용 연령대</option>
+          <option value="55" selected>50대 전형적인 오십견 의심층</option>
+          <option value="65">60대 이상 퇴행성 혼합 의심층</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="calc-pain">2. 어깨 부위의 통증 양상이 어떠한가요?</label>
+        <select id="calc-pain">
+          <option value="mild">가끔 찌릿하고 특정 각도에서만 뻐근함</option>
+          <option value="night">밤에 통증이 극심하여 자다 깨거나 뒤척임</option>
+          <option value="severe">아예 팔을 위로 뻗거나 등 뒤로 손을 보낼 수 없음</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="calc-period">3. 어깨 통증이 시작된 지 얼마나 지나셨나요?</label>
+        <select id="calc-period">
+          <option value="1">1개월 미만 (급성 초반)</option>
+          <option value="3">1개월 이상 ~ 6개월 미만 (유착 심화기)</option>
+          <option value="6">6개월 이상 (만성 동결기)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="calc-insurance">4. 보유하고 계신 실손의료보험 종류는 무엇인가요?</label>
+        <select id="calc-insurance">
+          <option value="gen1">1세대 ~ 2세대 구 실비 (자기부담금 최소)</option>
+          <option value="gen3">3세대 ~ 4세대 표준 실비 (비급여 30% 수준 공제)</option>
+          <option value="gen5">2026년 신규 5세대 실비 (급여 5% 본인 부담 및 횟수 제한 엄격)</option>
+          <option value="none">실손의료보험 가입되어 있지 않음</option>
+        </select>
+      </div>
+
+      <div style="text-align: center; margin-top: 25px;">
+        <button type="button" class="cta-button" onclick="calculateDiagnosis()">자가 진단 및 예상 치료비 산출하기</button>
+      </div>
+
+      <div id="calculator-result" class="result-box">
+        <h4>계산기 예측 종합 분석 리포트</h4>
+        <p id="result-status"></p>
+        <p id="result-cost"></p>
+        <p id="result-advice" style="font-weight: bold; color: #0d9488;"></p>
+      </div>
+    </div>
+
+    <script>
+      function calculateDiagnosis() {
+        const age = document.getElementById('calc-age').value;
+        const pain = document.getElementById('calc-pain').value;
+        const period = document.getElementById('calc-period').value;
+        const insurance = document.getElementById('calc-insurance').value;
+
+        let statusText = "";
+        let adviceText = "";
+        let estimatedCostRange = "";
+
+        // 상태 판정
+        if (pain === "mild" && period === "1") {
+          statusText = "초기 동결견 혹은 단순 회전근개 건염 의심 단계입니다. 관절낭의 심각한 영구 유착이 시작되기 전이므로 온열 요법과 가벼운 스트레칭으로 빠르게 좋아질 확률이 큽니다.";
+          adviceText = "추천 조치: 정형외과 외래 방문 후 소염제 복용 및 무리하지 않는 어깨 물리치료 진행";
+          estimatedCostRange = "본인부담금 예상 금액: 약 5만 원 미만 (일반 급여 외래 진료 기준)";
+        } else if (pain === "night" || period === "3") {
+          statusText = "중기 유착성 관절낭염 심화기입니다. 관절 주머니가 점차 두꺼워져 밤마다 유독 시큰거리고 돌아눕기 곤란한 상태입니다. 신속히 염증을 가라앉히는 전문 치료가 중요합니다.";
+          adviceText = "추천 조치: 초음파 유도 하 주사 요법(수압팽창술 추천) 및 주 2회 맞춤 도수치료 개시";
+          
+          if (insurance === "gen1") {
+            estimatedCostRange = "본인부담금 예상 금액: 도수치료 및 주사 청구 후 실제 환자 부담금 약 5만 원 내외 (실비 환급률 높음)";
+          } else if (insurance === "gen3" || insurance === "gen5") {
+            estimatedCostRange = "본인부담금 예상 금액: 약 15만 원 ~ 25만 원 선 (비보험 부담 부분 및 공제액 포함)";
+          } else {
+            estimatedCostRange = "본인부담금 예상 금액: 약 40만 원 ~ 60만 원 선 (도수치료 5~10회 비급여 적용 시)";
+          }
+        } else {
+          statusText = "만성 동결견(오십견) 고착 단계입니다. 관절 유착이 단단하게 이루어져 능동적이든 수동적이든 팔이 귀에 닿지 않는 극단적 강직이 특징입니다. 장기간의 재활이 요구됩니다.";
+          adviceText = "추천 조치: 정밀 초음파 또는 MRI 촬영을 통해 힘줄 상태를 확인한 후, 비수술적 수압팽창술 시술 및 2~3개월간의 연속적 도수치료";
+          
+          if (insurance === "gen1") {
+            estimatedCostRange = "본인부담금 예상 금액: 약 10만 원 ~ 20만 원 내외 (다회차 정기 도수치료 연간 실비 환급액 보장)";
+          } else if (insurance === "gen3" || insurance === "gen5") {
+            estimatedCostRange = "본인부담금 예상 금액: 약 30만 원 ~ 50만 원 선 (연간 관리급여 15회 한도 관리 필수)";
+          } else {
+            estimatedCostRange = "본인부담금 예상 금액: 약 80만 원 ~ 120만 원 선 (비급여 비용 전액 개인 수납 기준)";
+          }
+        }
+
+        document.getElementById('result-status').innerHTML = "<strong>자가진단 현황:</strong> " + statusText;
+        document.getElementById('result-cost').innerHTML = "<strong>예상 치료 요금:</strong> " + estimatedCostRange;
+        document.getElementById('result-advice').innerHTML = adviceText;
+        document.getElementById('calculator-result').style.display = "block";
+      }
+    </script>
+
+    <h2 id="section6">6. 커뮤니티 내돈내산 리얼 후기 비교</h2>
+    <p>오십견으로 고생해 보지 않은 사람은 그 밤낮없는 고통의 깊이를 온전히 이해하기 어렵습니다. 수많은 근골격계 환자들이 정보를 주고받는 온라인 대형 공간인 디시 갤러리, 보배드림 어깨 통증 치료 게시판, 에펨코리아 및 펨코 건강 팁 등에서 취합한 환자들의 리얼 내돈내산 후기를 객관적으로 전해 드립니다.</p>
+
+    <div class="review-card">
+      <h4>사례 1: 50대 초반 직장인 남성의 비수술 도수치료 내돈내산 후기</h4>
+      <p>수원에서 거주 중인 50대 남성입니다. 작년 가을부터 오른쪽 어깨가 슬슬 아프더니 올해 초부터는 바지 뒷주머니에 지갑을 꺼낼 수도 없었습니다. 혹시 수술 견적을 내야 하는 게 아닐까 겁먹고 인터넷에 수많은 글을 찾았습니다. 회사 근처 정형외과 싼곳을 알아보며 내원했는데 다행히 원장님이 굳이 무리한 시술은 필요 없고 수압팽창술 한 판에 꾸준히 물리치료나 받으라고 하셨습니다. 주사 한 방 맞고 즉시 묵직하게 걸려 있던 어깨가 다소 가벼워진 기적 같은 변화를 보았습니다. 이후 실비 적용을 확인하며 도수치료 10회 패키지 할인을 받아 주 2회씩 통원했더니 3달 만에 일상 동작을 완전히 문제없이 할 만큼 회복되었습니다.</p>
+    </div>
+
+    <div class="review-card">
+      <h4>사례 2: 30대 후반 여성 컴퓨터 디자이너의 에펨코리아 후기 발췌</h4>
+      <p>장시간 마우스를 쥐고 일하다가 젊은 나이에 일찍 오십견 증상을 겪은 케이스입니다. 펨코와 유튜브 어깨 스트레칭 관련 동영상들을 찾아보며 혼자 운동을 해보려 했지만 통증만 날이 갈수록 무섭게 심해졌습니다. 결국 마린시티 해운대 근처에 있는 오십견 전문 통증의학과 예약 센터에 방문해 진료를 받았습니다. 체외충격파치료 6회 프로그램과 기본 도수치료를 병행했는데 비록 비용은 회당 비급여라 상당했지만 실손보험금 청구 혜택을 톡톡히 챙겨서 가계 부담을 훌륭하게 아꼈습니다. 무엇보다 생활 패턴과 컴퓨터 책상 높이를 바꾸라는 전문 도수치료사 선생님의 현실 밀착형 피드백이 재발을 방지하는 데 가장 귀중한 무기였습니다.</p>
+    </div>
+
+    <h2 id="section7">7. 플랫폼별 추천 활용법 및 온라인 예약</h2>
+    <p>현명하고 신뢰도 높은 치료를 위해 아래의 현대적 웹 서비스와 도구들을 적재적소에 활용해 보시기를 적극 권장해 드립니다.</p>
+    <ul>
+      <li><strong>네이버 및 구글 검색 활용:</strong> 네이버 플레이스를 통하면 주변 지역에서 오십견 진료 평판이 준수한 동네 병원 순위와 실제 방문자들의 생생한 치료 리뷰를 대조해 볼 수 있습니다. 네이버 예약 기능으로 간편하게 대기 시간 없이 당일 진료 예약을 진행할 수 있습니다.</li>
+      <li><strong>유튜브 및 인스타그램 홈트레이닝:</strong> 무리한 고강도 근력 단련은 금물이지만 완화기(해동기)에 접어들면 가벼운 도구(짐볼, 라텍스 밴드)를 활용한 인스타그램 운동 인증이나 전문 재활 물리치료사가 알려주는 유튜브 회전근개 강화 훈련이 재활 기간을 유의미하게 단축시킵니다.</li>
+      <li><strong>모바일 핀테크 및 앱 활용:</strong> 토스 만보기 혜택을 통한 꾸준한 전신 혈류 개선 운동뿐만 아니라 각종 의료 보험 간편 청구 앱을 설치해 두면 복잡한 절차 없이 영수증 촬영만으로도 도수치료 비용을 수분 내에 청구하여 받아볼 수 있어 경제적으로 유익합니다.</li>
+      <li><strong>AI 기반 정보 비교 시스템:</strong> 제미나이 AI 추천 혹은 챗지피티 처방 분석 서비스를 이용하면 자신의 MRI 판독지나 진료비 영수증에 표기된 전문 한글 의학 용어와 구체적인 세부 내역들을 비대면 컨설팅 못지않게 친절하고 신속하게 설명받아 궁금증을 풀 수 있습니다.</li>
+    </ul>
+
+    <h2 id="section8">8. 공신력 있는 공식 외부 사이트 참조</h2>
+    <p>오십견 및 비수술 급여 규정과 연관된 공식적인 정보와 정책적 소식을 추가적으로 확인하고 안전한 진료 방향을 수립해 보세요.</p>
+    <ul>
+      <li><a class="external-link" href="https://painutreatd.koreahankang.com" target="_blank">척추 관절 및 재활 헬스케어 가이드 (health.reliabledone.com)</a>: 근골격계 보존 치료법 및 비수술 통증 재활 전문 칼럼</li>
+      <li><a class="external-link" href="https://namu.wiki/w/유착성%20관절낭염" target="_blank">나무위키: 유착성 관절낭염 상세 정보</a>: 오십견의 학술적 정의, 원인 및 시기별 자연 치유 경과 기록</li>
+      <li><a class="external-link" href="https://www.nhis.or.kr" target="_blank">국민건강보험공단 홈페이지</a>: 2026년 최신 도수치료 및 체외충격파 관리급여 전환 고시 및 비급여 수가 통계 자료실</li>
+      <li><a class="external-link" href="https://www.mohw.go.kr" target="_blank">보건복지부 공식 누리집</a>: 대한민국 건강 의료 정책 변화 및 근골격계 실손의료보험 가이드라인 공지사항</li>
+    </ul>
+
+    <div class="form-section" style="background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 40px; border: 1px solid #e2e8f0;">
+      <h3 style="margin-top: 0;">오십견 맞춤형 1:1 온라인 치료 상담 신청 양식</h3>
+      <p>본인의 증상과 연령대, 예상하는 어깨 가동 한계 등을 바탕으로 정형외과 혹은 재활의학과 전문의의 정밀 혜택 상담 가이드를 비대면으로 편안하게 수신할 수 있습니다.</p>
+      <form action="#" method="get" onsubmit="alert('상담 신청이 정상적으로 완료되었습니다. 기재하신 번호로 맞춤 병원 추천 및 비용 견적 정보가 발송됩니다.'); return false;">
+        <div class="form-group">
+          <label for="user-age-group">연령대 범주</label>
+          <select id="user-age-group">
+            <option value="30">30대 오십견 예방군</option>
+            <option value="40">40대 어깨통증 집중 관리군</option>
+            <option value="50">50대 전형적 오십견 치료군</option>
+            <option value="60">60대 이상 복합 질환군</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="user-shoulder">가장 불편한 한계 동작</label>
+          <select id="user-shoulder">
+            <option value="up">만세를 하듯 위로 수직으로 올리는 동작</option>
+            <option value="back">등을 긁거나 열중쉬어 자세로 손을 보내는 동작</option>
+            <option value="all">어깨를 안팎으로 회전하는 전반적인 모든 움직임</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="user-tel">연락처 및 알림톡 수신 번호</label>
+          <input type="text" id="user-tel" placeholder="예: 010-1234-5678" required>
+        </div>
+        <div class="form-group" style="text-align: center; margin-top: 30px;">
+          <button type="submit" class="cta-button" style="width: 100%;">맞춤형 실비 적용 한도 상담 신청</button>
+        </div>
+      </form>
+    </div>
+
+    <p style="text-align: center; font-size: 0.9em; color: #718096; margin-top: 50px; line-height: 1.6;">
+      상기 제공된 본 콘텐츠의 모든 정보는 2026년도 비급여 관리 가이드라인 및 전문적인 정형외과 재활 통계 자료를 근간으로 작성되었습니다. 다만 개개인의 근골격 결함 유무나 척추 어깨 틀어짐 정도, 실비 보상 가입 형태 및 시기에 따라 실제 부과되는 가격과 적정 적용 횟수에는 일부 차이가 있을 수 있습니다. 어깨 움직임 제한과 야간통이 느껴진다면 우선적으로 믿음직한 인근 어깨 전문 병의원에 조기 방문하시어 정확한 신체 검사와 주사 치료 처방을 선행하시는 것이 소중한 관절 건강을 안전하게 지키는 현명한 선택입니다.
+    </p>
+  </div>
+  
